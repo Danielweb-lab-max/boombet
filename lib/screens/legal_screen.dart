@@ -13,6 +13,8 @@ class _LegalScreenState extends State<LegalScreen> {
     return
       Scaffold(
         appBar: AppBar(
+          automaticallyImplyLeading: false,
+          backgroundColor: Colors.black,
           title: Center(
             child: Text("Legal Declaration"),
           ),

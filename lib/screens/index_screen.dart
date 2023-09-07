@@ -109,6 +109,8 @@ class _IndexScreenState extends State<IndexScreen> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
+          automaticallyImplyLeading: false,
+            backgroundColor: Colors.black,
             title: Center(
               child: AnimatedTextKit(
                 animatedTexts: [

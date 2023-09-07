@@ -13,6 +13,8 @@ class _TermsScreenState extends State<TermsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.black,
+        automaticallyImplyLeading: false,
         title: Center(
           child: Text("Terms of service"),
         ),
