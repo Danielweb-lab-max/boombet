@@ -307,6 +307,14 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                     ),
                   ),
                   Padding(
+                      padding: EdgeInsets.symmetric(vertical: 16),
+
+                      //borderRadius: BorderRadius.circular(10),
+                      child:
+                      BouncingButton()
+
+                  ),
+                  Padding(
                     padding: EdgeInsets.symmetric(vertical: 16),
 
                     //borderRadius: BorderRadius.circular(10),
@@ -355,35 +363,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                       ),
                     ),
                   ),
-                  // Padding(
-                  //   padding: EdgeInsets.symmetric(vertical: 16),
-                  //
-                  //   //borderRadius: BorderRadius.circular(10),
-                  //   child: ElevatedButton(
-                  //     onPressed: () async {
-                  //       const url = 'https://play.google.com/store/apps/details?id=com.daily_rollover_proApp.daily_rollover_proapp&pli=1';
-                  //       if (await canLaunch(url)) {
-                  //         await launch(url);
-                  //       } else {
-                  //         throw 'Could not launch $url';
-                  //       }
-                  //     },
-                  //     child: Text(
-                  //       "PRO VERSION APP",
-                  //       style: TextStyle(
-                  //         fontSize: 20,
-                  //         color: Colors.yellow,
-                  //       ),
-                  //     ),
-                  //     style: ElevatedButton.styleFrom(
-                  //       shape: RoundedRectangleBorder(
-                  //         borderRadius: BorderRadius.circular(30.0),
-                  //       ),
-                  //       backgroundColor: Colors.black,
-                  //       minimumSize: Size(50, 50),
-                  //     ),
-                  //   ),
-                  // ),
+
                   Padding(
                     padding: EdgeInsets.symmetric(vertical: 16),
 
@@ -413,35 +393,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                       ),
                     ),
                   ),
-                  // Padding(
-                  //   padding: EdgeInsets.symmetric(vertical: 16),
-                  //
-                  //   //borderRadius: BorderRadius.circular(10),
-                  //   child: ElevatedButton(
-                  //     onPressed: () async {
-                  //       const url = 'https://bit.ly/3PgB1sf';
-                  //       if (await canLaunch(url)) {
-                  //         await launch(url);
-                  //       } else {
-                  //         throw 'Could not launch $url';
-                  //       }
-                  //     },
-                  //     child: Text(
-                  //       "JOIN US!!!",
-                  //       style: TextStyle(
-                  //         fontSize: 25,
-                  //         color: Colors.red,
-                  //       ),
-                  //     ),
-                  //     style: ElevatedButton.styleFrom(
-                  //       shape: RoundedRectangleBorder(
-                  //         borderRadius: BorderRadius.circular(11.0),
-                  //       ),
-                  //       backgroundColor: Colors.white,
-                  //       minimumSize: Size(50, 50),
-                  //     ),
-                  //   ),
-                  // ),
+
 
                 ],
               ),
@@ -450,5 +402,65 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
         ),
       ),
     );
+  }
+}
+
+class BouncingButton extends StatefulWidget {
+  @override
+  _BouncingButtonState createState() => _BouncingButtonState();
+}
+
+class _BouncingButtonState extends State<BouncingButton>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      vsync: this,
+      duration: Duration(milliseconds: 500),
+      lowerBound: 0.0,
+      upperBound: 0.1,
+    )..repeat(reverse: true);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedBuilder(
+      animation: _controller,
+      builder: (context, child) {
+        return Transform.translate(
+          offset: Offset(0.0, -50 * _controller.value),
+          child: ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(11.0),
+              ),
+              backgroundColor: Colors.black,
+              minimumSize: Size(50, 50),
+            ),
+            onPressed: () async {
+              const url = 'https://bit.ly/LeGrandLuoFestivall';
+              if (await canLaunch(url)) {
+                await launch(url);
+              } else {
+                throw 'Could not launch $url';
+              }
+            },
+            child: Text('Meet Us This November!!!',style: TextStyle(
+              fontSize: 25,
+              color: Colors.orange,
+            ),),
+          ),
+        );
+      },
+    );
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 }
